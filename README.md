@@ -179,7 +179,6 @@ void setSizePath(Size size) {
 }
 ```
 
-
 ## 参考
 
 1. https://github.com/craftzdog/react-native-checkbox-reanimated
