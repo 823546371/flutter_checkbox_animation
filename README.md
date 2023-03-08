@@ -6,6 +6,19 @@
 
 ![](screenshot/preview.gif)
 
+
+## CHANGELOG
+
+### 1.0.0
+
+publish
+
+### 1.0.1
+
+1. 添加了不选中的颜色配置（outlineColor）
+2. 用户自行决定调用 setState，刷新组建，用法想见 demo
+
+
 ## 快速上手
 
 1. 在 pubspec.yaml 添加

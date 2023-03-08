@@ -44,15 +44,24 @@ class _CheckBoxAnimationState extends State<CheckBoxAnimation>
   }
 
   @override
+  void didUpdateWidget(covariant CheckBoxAnimation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.check != widget.check) {
+      if (check) {
+        _controller.reset();
+        _controller.forward();
+      } else {
+        _controller.value = 1;
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          check = !check;
-        });
+        check = !check;
         widget.onValueChange?.call(check);
-        _controller.reset();
-        _controller.forward();
       },
       child: AnimationCheckBox(
         animation: _animation,
@@ -69,6 +78,7 @@ class AnimationCheckBox extends AnimatedWidget {
   final bool check;
   final Color? highlightColor;
   final Color? checkMarkColor;
+  final Color? outlineColor;
   final double? size;
 
   const AnimationCheckBox({
@@ -77,6 +87,7 @@ class AnimationCheckBox extends AnimatedWidget {
     required this.check,
     this.highlightColor,
     this.checkMarkColor,
+    this.outlineColor,
     this.size = 100,
   }) : super(listenable: animation);
 
@@ -90,6 +101,7 @@ class AnimationCheckBox extends AnimatedWidget {
         check: check,
         highlightColor: highlightColor,
         checkMarkColor: checkMarkColor,
+        outlineColor: outlineColor,
       ),
     );
   }

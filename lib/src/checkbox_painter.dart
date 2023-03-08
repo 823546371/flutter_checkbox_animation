@@ -9,6 +9,7 @@ class CheckPainter extends CustomPainter {
 
   late Color _highlightColor;
   late Color _checkMarkColor;
+  late Color _outlineColor;
 
   var checkMarkPath = parseSvgPathData(
       'M15 31.1977C23.1081 36.4884 29.5946 43 29.5946 43C29.5946 43 37.5 25.5 69 1.5');
@@ -20,9 +21,11 @@ class CheckPainter extends CustomPainter {
     required this.check,
     Color? highlightColor,
     Color? checkMarkColor,
+    Color? outlineColor,
   }) {
     _highlightColor = highlightColor ?? Colors.blue;
     _checkMarkColor = checkMarkColor ?? Colors.white;
+    _outlineColor = outlineColor ?? Colors.grey;
   }
 
   @override
@@ -49,7 +52,7 @@ class CheckPainter extends CustomPainter {
     canvas.drawPath(extractPath, paint);
 
     paint.strokeWidth = check ? 0 : 4;
-    paint.color = _highlightColor;
+    paint.color = check ? _highlightColor : _outlineColor;
     paint.style = check ? PaintingStyle.fill : PaintingStyle.stroke;
     canvas.drawPath(outlineBoxPath, paint);
 

@@ -30,16 +30,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool check = true;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: CheckBoxAnimation(
-        check: true,
+        check: check,
         onValueChange: (value) {
-          print(value);
+          setState(() {
+            check = value;
+          });
         },
         highlightColor: Colors.blue,
         checkMarkColor: Colors.white,
